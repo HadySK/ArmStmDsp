@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>16_DFTAlgo</name>
+	<name>ArmStmDsp</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -35,14 +35,4 @@
 			<locationURI>$%7BPROJECT_LOC%7D/CMSIS/DSP/Source</locationURI>
 		</link>
 	</linkedResources>
-	<variableList>
-		<variable>
-			<name>copy_PROJECT_LOC</name>
-			<value>$%7BPARENT-1-PROJECT_LOC%7D/7_SignalCMSIS_DSP</value>
-		</variable>
-		<variable>
-			<name>copy_PROJECT_LOC1</name>
-			<value>$%7BPARENT-1-PROJECT_LOC%7D/10_ConvImpulseResponse</value>
-		</variable>
-	</variableList>
 </projectDescription>

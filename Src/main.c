@@ -52,6 +52,7 @@ volatile uint32_t filteredSensorVal;
 
 extern float LP_1HZ_2HZ_IMPULSE_RESPONSE[IMP_RSP_LENGTH];
 fir_filter lpfFir;
+volatile uint32_t myRxData[50];
 
 void convTesting();
 int main(void)
@@ -72,9 +73,8 @@ int main(void)
 
 	/*Init FIFO*/
 	rxFifoInit();
+	uint32_t rxData;
 
-	uint8_t rxFifoPut(rx_dataType data);
-	uint8_t rxFifoGet(rx_dataType * dataPt);
 	/*Initialize FIR filter*/
 	firFilterInit(&lpfFir, LP_1HZ_2HZ_IMPULSE_RESPONSE, IMP_RSP_LENGTH);
 	//init fft handler
@@ -103,10 +103,17 @@ int main(void)
  			(float32_t  *)outputArrMvg,(uint32_t)   KHZ_15_SIG_LEN);*/
  		//serialPlotReXCMSIS(outputArrDFTCMSIS2, (HZ_10_100_500HZ_SIGLEN/2));
 
- 		sensorValue = adcRead();
+ 		/*sensorValue = adcRead();
  		filteredSensorVal = firFilterUpdate(&lpfFir, sensorValue);
  		printf("%d,", (int)sensorValue);
- 		printf("%d\n\r", (int)filteredSensorVal);
+ 		printf("%d\n\r", (int)filteredSensorVal);*/
+ 		for (int i = 0; i< 50; i++){
+ 				rxFifoPut(adcRead());
+ 			}
+ 		for (int i = 0; i< 50; i++){
+ 			rxFifoGet(&rxData);
+ 			myRxData[i] = rxData;
+ 		}
  		delayFn(100000);
 
  	}
